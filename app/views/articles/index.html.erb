@@ -1,0 +1,52 @@
+<div class="container">
+<%= form_tag articles_path, method: :get do %>
+    <div class="row">
+      <div class="form-group col-4 col-md-4">
+        <%= text_field_tag :title, params[:title], class: "form-control", placeholder: "¿qué estás buscando?" %>
+      </div>
+      <div class="form-group col-6 col-md-4">
+          <%= submit_tag "Buscar", name: nil, class: "btn btn-primary btn-md" %>
+      </div>
+
+    <% end %>  
+    </div>
+<p id="notice"><%= notice %></p>
+
+<h1>Articulos</h1>
+
+<div class="row row-cols-3">
+    <% @articles.each do |article| %>
+    <div class="col">
+      <div class="card border-primary mb-3" style="max-width: 18rem;">
+
+            <div class="card-header"><%= article.title %></div>
+            <div class="card-body text-secondary"><%= article.created_at %></div>
+            <div class="card-body text-primary"><%= link_to 'Ver más', article %></div>
+            <div class="card-footer bg-transparent border-primary">Autor: <%= article.user.email %></div>
+
+      </div>
+    </div>
+    <% end %>
+
+<br>
+
+<%#= link_to 'New Article', new_article_path %>
+</div>
+<div class="pagination" style="font-size: small">
+<%= 
+will_paginate @articles,
+  :class          => 'pagination',
+  :previous_label => ' &laquo; Anterior ',
+  :next_label     => ' Siguiente &raquo; ',
+  :inner_window   => 4, # links around the current page
+  :outer_window   => 1, # links around beginning and end
+  :separator      => ' - ', # single space is friendly to spiders and non-graphic browsers
+  :param_name     => :page,
+  :params         => nil,
+  
+  :page_links     => true,
+  :container      => true
+
+%>
+</div>
+</div>

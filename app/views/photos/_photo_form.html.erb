@@ -1,0 +1,28 @@
+<%= form_for @photo do |f| %>
+
+  <%= f.label :name, 'Titulo' %>
+  <%= f.text_field :name, required: true %>
+  <br><br>
+
+  <%= f.label :url, 'URL' %>
+  <%= f.text_field :url, required: true %>
+  <br><br>
+
+  <%= f.label :description, 'Descripcion' %>
+  <%= f.text_area :description %>
+  <br><br>
+
+  <%= f.label :visibility, 'Visibilidad'%>
+  <!-- Photo::visibilities.keys.to_a //toma las claves y lo convierte en un array -->
+  <%= f.select :visibility, Photo::visibilities.keys.to_a, required: true %>
+
+  <%= f.label :license, 'Licencia' %>
+  <%= f.select :license, Photo::licenses.keys.to_a, required: true %>
+  <br><br>
+
+  <% if @photo.new_record? %>
+    <%= f.submit 'Crear foto' %>
+  <% else %>
+    <%= f.submit 'Actualizar foto' %>
+  <% end %>
+<% end %>

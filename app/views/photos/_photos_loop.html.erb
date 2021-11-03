@@ -1,0 +1,5 @@
+<% @photos.each do |photo| %>
+	<%= link_to photo_path(photo) do %>
+		<img src="<%= photo.url %>" alt="<%= photo.name %>" height="150" class="img-rounded">
+	<% end %>
+<% end %>

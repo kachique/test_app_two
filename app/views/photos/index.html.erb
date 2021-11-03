@@ -1,0 +1,13 @@
+<h1>Bienvenido a esta página</h1>
+<p>Este es un blog para publicar imágenes</p>
+
+<% if @photos.any? %>
+<!-- si se va cargar todo, usar @photos.find_each-->
+	<h2>Últimas fotos publicadas</h2>
+
+	<%= render partial: "photos_loop", object: @photos %>
+
+
+<% else %>
+	<p>Sé el primero en publicar una foto.</p>
+<% end %>

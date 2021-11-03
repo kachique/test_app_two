@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TestAppTwo</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+  </head>
+
+  <body>
+    <% if notice %>
+       <p class="notice"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+       <p class="alert"><%= alert %></p>
+      <% end %>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <%= link_to 'Inicio', root_path, class: "nav-item nav-link" %>
+          <%= link_to 'Articulos', articles_path, class: "nav-item nav-link" %>
+          <%= link_to 'Escribir', new_article_path, class: "nav-item nav-link" %>
+           <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to 'Salir', destroy_user_session_path, method: :delete, class: "nav-link" %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to 'Entrar', new_user_session_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Registrarse', new_user_registration_path, class: "nav-link" %>
+          </li>
+        <% end %>
+
+        </div>
+      </div>
+    </nav>
+
+    <%= yield %>
+    <hr>
+    <section>
+      <small>Pagina Inc &copy; Todos los derechos reservados</small>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+<% content_for :title do %>
+<%= @photo.name %>
+<% end %>
+<!-- aqui se muestra todo el detalle de las fotos -->
+<h1><%= @photo.name %> </h1>
+<img src=<%= @photo.url %> alt=<%= @photo.name %> height="300">
+
+<h2>Description:</h2>
+<p><%= @photo.description %></p>
+
+<h2>Author:</h2>
+<p> <%= @photo.user.email %></p>
+
+<br><br>
+
+<% if @photo.user == current_user %>
+  <%= link_to 'Editar', edit_photo_path %>
+  <%= link_to 'Borrar', photo_path, method: :delete, data: {confirm: '¿Estás seguro?'} %>
+<% end %>

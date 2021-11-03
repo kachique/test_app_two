@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <h1 class="text-uppercase"><%= @article.title %></h1>
+</p>
+<p><<%= @article.user.email %>/p>
+<p>
+  <%= @article.content %>
+</p>
+
+<% if signed_in? %>
+    <% if current_user.email == @article.user.email %>
+      <%= link_to "Eliminar", @article, method: :delete, class: "btn btn-danger btn-sm" %> |
+    <% end %>
+    <% if current_user.email == @article.user.email %>
+      <%= link_to "Editar", edit_article_path(@article), class: "btn btn-primary btn-sm" %>
+    <% end %>
+  <% end %>
+
+<%= render "comments" %>
+
+<hr>
+<div class="">
+	<p class="label"><strong>Tags:</strong>
+	<% @article.categories.each do |category| %>
+		<span class="badge badge-pill padding rounded-pill" style="background-color:<%=category.color %>; text-decoration: none;">
+			<%= link_to category.title, category, class:"tag" %>
+		</span>
+
+	<% end %>
+	</p>
+</div>

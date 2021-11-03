@@ -1,0 +1,23 @@
+<div class="container">
+  <h1>Artículos publicados por <%= @category.title %></h1>
+</div>
+
+<div class="container">
+<h1><%= @category.title %></h1>
+<div>
+  <p>TAG: <strong> <%= @category.title%> </strong></p>
+</div>
+<div>
+  <%= @category.title %>
+</div>
+<hr>
+
+  <p class="label">Tags</p>
+  <% @category.articles.each do |category| %>
+
+      <%= category.title %>
+
+    <div class="card-body text-primary"><%= link_to 'Ver más', article_path %></div>
+    <hr>
+  <% end %>
+</div>
